@@ -2,9 +2,12 @@ package com.spring.test.poi.service.impl;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import com.spring.test.poi.controller.PoiController;
 import com.spring.test.poi.pojo.PoiVo;
 import com.spring.test.poi.service.PoiService;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
@@ -25,11 +28,14 @@ import java.util.List;
 @Service
 public class PoiServiceImpl implements PoiService {
 
+    private final Logger logger = LoggerFactory.getLogger(PoiController.class);
+
     @Override
     public void downExcel(HttpServletResponse response){
 //        List<PoiVo> list = getAllPoiVo();
         List<PoiVo> list = new ArrayList<PoiVo>();
-        for(int i=0 ; i<999999; i++) {
+        //单sheet默认最多保存6万行数据，如果超过导出上限会自动创建sheet（讲道理应该可以自定义）
+        for(int i=0 ; i<10000; i++) {
             PoiVo poiVo = new PoiVo();
             poiVo.setId(i);
             poiVo.setPoiName(i+"name");
@@ -37,9 +43,9 @@ public class PoiServiceImpl implements PoiService {
             list.add(poiVo);
         }
 
-        System.out.println("一共有 ： " + list.size());
+        logger.info("共有：" + list.size() + "条数据");
         //指定列表标题和工作表名称
-        ExportParams params = new ExportParams("测试POI","测试POI内容");
+        ExportParams params = new ExportParams("测试通过EasyPoi导出Excel","POI-Sheet");
         params.setCreateHeadRows(true);
         Workbook workbook = ExcelExportUtil.exportExcel(params, PoiVo.class,list);
         response.setHeader("content-Type","application/vnd.ms-excel");
