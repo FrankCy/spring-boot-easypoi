@@ -27,9 +27,9 @@ public class PoiServiceImpl implements PoiService {
 
     @Override
     public void downExcel(HttpServletResponse response){
-//        List<PoiVo> list = getAllStu();
+//        List<PoiVo> list = getAllPoiVo();
         List<PoiVo> list = new ArrayList<PoiVo>();
-        for(int i=0 ; i<99999; i++) {
+        for(int i=0 ; i<999999; i++) {
             PoiVo poiVo = new PoiVo();
             poiVo.setId(i);
             poiVo.setPoiName(i+"name");
