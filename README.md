@@ -2,12 +2,6 @@
 ### 导出Excle ###
 
 - 说明<br/>
-graph TD
-A[1111] -->|Get money|B(Go Shopping)
-B --> C{enough?}
-C --> |YES| D[laptop]
-C --> |NO| E[iPhone]
-
 
 - 启动<br/>
 运行：spring-boot-easypoi/src/main/java/com/spring/test/poi/SpringBootEasypoiApplication <br/>
