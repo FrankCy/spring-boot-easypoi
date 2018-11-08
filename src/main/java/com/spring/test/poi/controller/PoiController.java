@@ -25,7 +25,14 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping("/poi")
 public class PoiController {
 
-    //日志
+    /**
+     * @description：日志
+     * @version 1.0
+     * @author: Yang.Chang
+     * @email: cy880708@163.com
+     * @date: 2018/11/8 下午1:38
+     * @mofified By:
+     */
     private final Logger logger = LoggerFactory.getLogger(PoiController.class);
 
     @Autowired
@@ -39,7 +46,7 @@ public class PoiController {
      * @date: 2018/11/8 上午11:07
      * @mofified By:
      */
-    @RequestMapping("/index")
+    @RequestMapping(value = "/index")
     public String index(Model model){
         System.out.println("测试");
         return "index";
